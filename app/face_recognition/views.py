@@ -1,3 +1,5 @@
+from photo_load.models import Photo
+from photo_load.serializers import PhotoSerializer
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -9,8 +11,6 @@ from rest_framework.status import (
     HTTP_500_INTERNAL_SERVER_ERROR,
 )
 
-from app.photo_load.models import Photo
-from app.photo_load.serializers import PhotoSerializer
 from .models import Face, Avatar
 from .serializers import FaceSerializer, AvatarSerializer
 
@@ -31,6 +31,7 @@ class FaceView(viewsets.ViewSet):
             return Response({}, status=HTTP_404_NOT_FOUND)
         face = face.first()
         face.avatar = Avatar.objects.filter(id=new_avatar).first()
+        face.user_checked = True
         face.save()
         return Response({'new_face': FaceSerializer(face).data},
                         status=HTTP_200_OK)
@@ -69,6 +70,10 @@ class AvatarView(viewsets.ViewSet):
         new_name = request.data['new_name']
         avatar.name = new_name
         avatar.save()
+        face = Face.objects.filter(photo__owner=request.user)\
+            .filter(id=request.data['face']).first()
+        face.user_checked = True
+        face.save()
         return Response({'updated_avatar': AvatarSerializer(avatar).data},
                         status=HTTP_200_OK)
 
