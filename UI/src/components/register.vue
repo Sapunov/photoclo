@@ -17,7 +17,8 @@
                         v-on:change="updateUsername"
                         v-on:keyup.enter="register"
                         autofocus required
-                        align="center"/>
+                        align="center"
+                        required/>
                 <span class="floating-label">Логин</span>
             </div>
             <div class="user-input-wrp">
@@ -30,7 +31,8 @@
                         ref="password"
                         v.model="input.password"
                         v-on:change="updatePassword"
-                        v-on:keyup.enter="register"/>
+                        v-on:keyup.enter="register"
+                        required/>
                 <span class="floating-label">Пароль</span>
             </div>
             <div class="user-input-wrp">
@@ -42,7 +44,8 @@
                         ref="confirm_password"
                         v.model="input.confirm_password"
                         v-on:change="updateConfirmPassword"
-                        v-on:keyup.enter="register"/>
+                        v-on:keyup.enter="register"
+                        required/>
                 <span class="floating-label">Подтвердите пароль</span>
             </div>
             <div class="user-input-wrp">
@@ -55,7 +58,8 @@
                         ref="email"
                         v.model="input.email"
                         v-on:change="updateEmail"
-                        v-on:keyup.enter="register"/>
+                        v-on:keyup.enter="register"
+                        required/>
                 <span class="floating-label">Электронная почта</span>
             </div>
             <button class="button" id="registerButton" form="register" type="button" v-on:click="register()"><span>Регистрация</span></button>
@@ -195,6 +199,7 @@
         height: 80vh;
         padding: 20px;
         font: 20px Calibri;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     .input {

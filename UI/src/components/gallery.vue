@@ -3,14 +3,15 @@
         <imageItem v-for="(image, index) in images" v-on:click.native='clicked(index)' v-bind:imageURL="image.url" v-bind:style="styles[index]"/>
 
         <div id="myModal" class="imageModal">
-            <span class="closeCarousel" id="closeImageButton">&times;</span>
+            <span class="buttonCarousel" id="closeImageButton">&times;</span>
+            <span class="buttonCarousel" id="deleteImageButton">&#128465;</span>
             <div class='innerContent'>
                 <div class="carouselButton" v-on:click="prev()">
                     <span >&#8249;</span>
                 </div>
                 <div id="overIBS">
                     <div class="image-modal-content">
-                        <imageWBBItem id="imageBigShow" v-bind:faces="this.faces" v-bind:image="this.images[this.index]" v-bind:avatars="this.avatarsById"/>
+                        <imageWBBItem id="imageBigShow" v-bind:faces="this.faces" v-bind:image="imagesBig[index]" v-bind:avatars="this.avatarsById"/>
                     </div>
                 </div>
                 <div class="carouselButton" v-on:click="next()">
@@ -36,6 +37,12 @@
         },
         props: {
             images: {
+              type: Array,
+              default () {
+                  return [];
+              }
+            },
+            imagesBig: {
               type: Array,
               default () {
                   return [];
@@ -123,16 +130,41 @@
                     i = j - 1;
                 }
                 return st;
-            }
+            },
         },
         mounted: function () {
             var modal = document.getElementById('myModal');
 
             var span = document.getElementById('closeImageButton'); 
             span.onclick = function() {
-                console.log("darova");
                 this.index = null;
                 modal.style.display = "none";
+            }
+
+            var span2 = document.getElementById('deleteImageButton');
+            console.log(span2);
+            var this_ = this;
+            span2.onclick = function() {
+                console.log("darova");
+                console.log(this_.index);
+                if (this_.index == null) {
+                    return;
+                }
+                var id_ = this_.images[this_.index].id;
+                this_.images.splice(this_.index, 1);
+                this_.avatars.splice(this_.index, 1);
+                if (this_.index == this_.images.length) {
+                    this_.index = 0;
+                }
+                this_.deleteLastFaces();
+                if (this_.images.length == 0) {
+                    this_.close();
+                }
+                axios.delete('http://photoclo.ru:8000/api/photos/' + id_ + '/', { headers: {Authorization: "Token " + localStorage.token}}).then(function (response) {
+                    console.log("deleted");
+                }).catch(function (error) {
+                    console.log(error);
+                });
             }
         },
         methods: {
@@ -178,7 +210,7 @@
                 }
             },
             close() {
-                this.deleteLastFaces()
+                this.deleteLastFaces();
                 this.index = null;
                 document.getElementById('myModal').style.display = "none";
             },
@@ -247,18 +279,32 @@
         border: 0px !important;
     }
 
-    /* The Close Button */
-    .closeCarousel {
+    .buttonCarousel {
         position: absolute;
-        top: 10px;
-        right: 20px;
         color: #999 !important; 
-        font-size: 30px;
+        font-size: 31px;
         transition: 0.3s;
     }
 
-    .closeCarousel:hover,
-    .closeCarousel:focus {
+    #closeImageButton {
+        top: 10px;
+        right: 20px;
+    }
+
+    #deleteImageButton {
+        font-size: 21px;
+        bottom: 5px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    #deleteImageButton:hover,
+    #deleteImageButton:focus {
+        opacity: 0.8;
+    }
+
+    .buttonCarousel:hover,
+    .buttonCarousel:focus {
         color: #FFF !important;
         text-decoration: none;
         cursor: pointer;

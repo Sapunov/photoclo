@@ -11,9 +11,6 @@
 
             <b-collapse is-nav id="nav_collapse">
 
-
-
-                <!-- Right aligned nav items -->
                 <b-navbar-nav class="ml-auto">
 
                     <form class="form-inline md-form form-sm mt-0">
@@ -23,8 +20,7 @@
 
 
                     <b-button v-b-modal.uploadModal class="mr-sm-2" v-on:click="updateToken(); isModalShown = true; resetUploader()" right>Загрузить</b-button>
-                    <!--<span> myUploader.data().toClose </span>-->
-                    <b-modal id="uploadModal" ref="uploadModal" hide-footer=true title="Загрузка фотографий">
+                    <b-modal id="uploadModal" ref="uploadModal" hide-footer=true title="Загрузка фотографий" @hide="isModalShown = false">
                         <myUploader ref="myUploader" v-on:closeModal="isModalShown = false;" url="http://photoclo.ru:8000/api/photos/" @upload-image-success='updateImages();' @upload-image-failure='updateImages();'> </myUploader>
                     </b-modal>
                     <b-dropdown right text="Пользователь"  class="mr-sm-2">
@@ -41,7 +37,6 @@
 
 <script>
     import axios from 'axios';
-    import MultipleFileUploader from './components/MultipleFileUploader.vue';
     import myUploader from './components/myUploader.vue'
     var modal = document.getElementById('id01');
 
@@ -66,11 +61,11 @@
             }
         },
         components: {
-            MultipleFileUploader,
             myUploader
         },
         watch: {
             isModalShown(value) {
+                console.log(value, 'kek');
                 if (value) {
                     this.$refs.uploadModal.show();
                 }
@@ -86,11 +81,9 @@
             }
             console.log(this.authenticated);
             if(!this.authenticated) {
-                console.log("lol");
                 this.$router.replace({ name: "login" });
             }
             else {
-                console.log("kek");
                 this.$router.replace({name: "secure"});
             }
         },
@@ -122,7 +115,7 @@
 
 <style>
     body {
-        background-color: #E0E0E0;
+        background-color: #DDD !important;
     }
     h1 {
         padding: 0;

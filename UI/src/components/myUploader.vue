@@ -67,7 +67,7 @@
             max_files: {
                 type: Number,
                 required: false,
-                default: 10
+                default: 100,
             },
             max_filesize: {
                 type: Number,

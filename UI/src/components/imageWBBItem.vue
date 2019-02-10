@@ -9,7 +9,7 @@
 
 <script> 
     import bbButton from './bbButton.vue';
-    
+    import axios from 'axios';
 
 	export default {
 		name: 'imageWBBItem',

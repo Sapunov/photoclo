@@ -14,7 +14,8 @@
                         ref="username"
                         v.model="input.username"
                         v-on:change="updateUsername"
-                        autofocus>
+                        autofocus
+                        required>
                 <span class="floating-label">Логин</span>
             </div>
             <div class="user-input-wrp">
@@ -26,7 +27,8 @@
                         name="password"
                         ref="password"
                         v.model="input.password"
-                        v-on:change="updatePassword"/>
+                        v-on:change="updatePassword"
+                        required/>
                 <span class="floating-label">Пароль</span>
             </div>
             <button class="loginPageButton" id="loginButton" form="login" type="submit""><span>Вход</span></button>
@@ -116,6 +118,7 @@
         min-height: 350px;
         padding: 20px;
         font: 20px Calibri;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     .input {
@@ -190,7 +193,7 @@
     input:focus {
         outline: none !important;
     }
-    
+
     .inputFields {
         width: 100%;
         display: flex;
