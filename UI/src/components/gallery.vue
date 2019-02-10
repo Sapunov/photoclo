@@ -1,12 +1,22 @@
 <template>
     <div class="gallery">
-        <imageItem v-for="(image, index) in images" v-on:click.native='clicked(index)' v-bind:imageURL="image.url"/>
+        <imageItem v-for="(image, index) in images" v-on:click.native='clicked(index)' v-bind:imageURL="image.url" v-bind:style="styles[index]"/>
 
         <div id="myModal" class="imageModal">
-            <div class="image-modal-content">
-                <imageWBBItem id="imageBigShow" v-bind:faces="this.faces" v-bind:image="this.images[this.index]" />
-            </div>
             <span class="close" id="closeImageButton">&times;</span>
+            <div class='innerContent'>
+                <div class="carouselButton" v-on:click="prev()">
+                    <span >&#8249;</span>
+                </div>
+                <div id="overIBS">
+                    <div class="image-modal-content">
+                        <imageWBBItem id="imageBigShow" v-bind:faces="this.faces" v-bind:image="this.images[this.index]" v-bind:avatars="this.avatarsById"/>
+                    </div>
+                </div>
+                <div class="carouselButton" v-on:click="next()">
+                    <span>&#8250;</span>
+                </div>
+            </div>
         </div>
 
  
@@ -33,7 +43,7 @@
         name: 'gallery',
         components: {
             imageItem,
-            imageWBBItem
+            imageWBBItem,
         },
         props: {
             images: {
@@ -42,12 +52,19 @@
                   return [];
               }
             },
+            avatars: {
+                type: Array,
+                default () {
+                    return [];
+                }
+            },
         },
         data() {
             return {
                 index: null,
                 imagenowURL: '',
-                faces: {},
+                faces: [],
+                recompute: 0,
             };
         },
         watch: {
@@ -56,25 +73,118 @@
                 this.getFaces();
             },
         },
+        created: function () {
+            document.onkeydown = this.onkeydown;
+            window.addEventListener('resize', this.updateStyles);
+            this.updateStyles();
+        },
+        destroyed() {
+            window.removeEventListener('resize', this.updateStyles);
+        },
+        computed: {
+            avatarsById: function() {
+                var avatarsById = {};
+                for (var i = 0; i < this.avatars.length; ++i) {
+                    avatarsById[this.avatars[i].id] = this.avatars[i];
+                }
+                return avatarsById;
+            },
+            styles: function() {
+                this.recompute;
+                var st = [];
+                var w = window.innerWidth - 10;
+                for (var i = 0; i < this.images.length; ++i) {
+                    var j = i;
+                    var sum = 0;
+                    while (j < this.images.length && (j == i || sum + Math.ceil(this.images[j].width * 200 / this.images[j].height) + 10 <= w)) {
+                        sum += Math.ceil(this.images[j].width * 200 / this.images[j].height) + 10;
+                        ++j;
+                    }
+                    var h1 = Math.floor(199 * (w - (j - i) * 10) / (sum - (j - i) * 10));
+                    if (j == this.images.length) {
+                        for (var k = i; k < j; ++k) {
+                            st.push('height: ' + h1 + 'px !important;');
+                        }
+                    }
+                    else {
+                        var sum2 = sum;
+                        sum2 += Math.ceil(this.images[j].width * 200 / this.images[j].height) + 10;
+                        var h2 = Math.floor(199 * (w - (j - i + 1) * 10) / (sum2 - (j - i + 1) * 10));
+                        if (Math.abs(h2 / 200 - 1) < Math.abs(h1 / 200 - 1)) {
+                            for (var k = i; k <= j; ++k) {
+                                st.push('height: ' + h2 + 'px !important;');
+                            }
+                            ++j;
+                        }
+                        else {
+                            for (var k = i; k < j; ++k) {
+                                st.push('height: ' + h1 + 'px !important;');
+                            }
+                        }
+                    }
+                    i = j - 1;
+                }
+                return st;
+            }
+        },
+        mounted: function () {},
         methods: {
             clicked(index) {
                 this.index = index;
                 var modal = document.getElementById('myModal');
                 modal.style.display = "flex";
             },
+            updateStyles() {
+                console.log("update");
+                this.recompute += 1;
+            },
             getFaces() {
                 var this_ = this;
-                if (!this_.images || ! this_.index) {
+                if (!this_.images || !this_.index && this.index != 0) {
                     this_.faces = {};
                     return;
                 }
-                axios.get('api/faces/' + String(this_.images[this_.index].id) + '/', { headers: {Authorization: "Token " + localStorage.token}}).then(function (response) {
-                        console.log('faces = ', response.data.faces);
+                axios.get('/api/faces/' + String(this_.images[this_.index].id) + '/', { headers: {Authorization: "Token " + localStorage.token}}).then(function (response) {
                         this_.faces = response.data.faces;
                 }).catch(function (error) {
-                    console.log(error);
                     this_.faces = {};
                 });
+            },
+            deleteLastFaces() {
+                var arr = document.getElementsByClassName('mybbButton');
+                for (var i = 0; i < arr.length; ++i) {
+                    arr[i].style.display = "none";
+                }
+            },
+            next() {
+                this.deleteLastFaces()
+                this.index += 1;
+                if (this.index == this.images.length) {
+                    this.index = 0;
+                }
+            },
+            prev() {
+                this.deleteLastFaces()
+                this.index -= 1;
+                if (this.index < 0) {
+                    this.index = this.images.length - 1;
+                }
+            },
+            close() {
+                this.deleteLastFaces()
+                this.index = null;
+                document.getElementById('myModal').style.display = "none";
+            },
+            onkeydown(e) {
+                if (e.key == "Escape") {
+                    this.close();
+                }
+                else if (e.key == "ArrowRight") {
+                   this.next();
+                }
+                else if (e.key == "ArrowLeft"){
+                    this.prev();
+                }
             }
         }
     }
@@ -86,20 +196,17 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
-        margin: 10px;
+        margin: 5px;
     }
 
     .imageModal {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
-        justify-content: space-around;
-        align-content: center;
-        align-items: center;
-        align-self: center;
         z-index: 1; /* Sit on top */
-        padding-top: 300px; /* Location of the box */
+        padding-top: 0px; /* Location of the box */
         left: 0;
         top: 0;
+        justify-content: space-around;
         width: 100%; /* Full width */
         height: 100%; /* Full height */
         overflow: auto; /* Enable scroll if needed */
@@ -110,15 +217,11 @@
     /* Modal Content (Image) */
     .image-modal-content {
         display: flex;
-        margin: auto;
         justify-content: space-around;
-        align-content: center;
-        align-self: center;
-        align-items: center;
-        width: auto;
+        alignment-baseline: central;
+        width: 100%;
         height: auto;
-        background-color: rgba(0, 0, 0, 0) !important;
-
+        max-height: 
     }
     
     /* Add Animation - Zoom in the Modal */
@@ -135,18 +238,55 @@
     /* The Close Button */
     .close {
         position: absolute;
-        top: 15px;
-        right: 35px;
-        color: #FFFFFF !important;
-        font-size: 40px;
-        font-weight: bold;
+        top: 10px;
+        right: 20px;
+        color: #FFF !important; 
+        font-size: 30px;
         transition: 0.3s;
     }
 
     .close:hover,
     .close:focus {
-        color: #bbb;
+        color: #FFF !important;
         text-decoration: none;
         cursor: pointer;
+    }
+
+    .carouselButton {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        text-align: center;
+        width: 5%;
+        font: 40px;
+        color: #BBB !important;
+        background-color: rgba(0, 0, 0, 0) !important;
+        height: 100% !important;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .carouselButton:hover,
+    .carouselButton:focus {
+        color: #FFF;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .innerContent {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        alignment-baseline: central;
+    }
+
+    #overIBS {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 100%;
+        height: 100%;
+        max-height: 100vh;
     }
 </style>
