@@ -16,7 +16,7 @@
                         v.model="input.username"
                         v-on:change="updateUsername"
                         v-on:keyup.enter="register"
-                        autofocus required
+                        autofocus
                         align="center"
                         required/>
                 <span class="floating-label">Логин</span>

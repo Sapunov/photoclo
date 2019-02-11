@@ -80,4 +80,8 @@
         cursor: pointer;
         border-radius: 5px;
     }
+
+    .btn {
+        z-index: 5 !important;
+    }
 </style>

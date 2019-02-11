@@ -31,7 +31,7 @@
                         required/>
                 <span class="floating-label">Пароль</span>
             </div>
-            <button class="loginPageButton" id="loginButton" form="login" type="submit""><span>Вход</span></button>
+            <button class="loginPageButton" id="loginButton" form="login" type="submit"><span>Вход</span></button>
         </div>
         <button class="loginPageButton" id="registerButton" form="login" type="button" v-on:click="toRegisterPage()">Еще нет аккаунта? Зарегистрируйтесь!</button>
     </form>

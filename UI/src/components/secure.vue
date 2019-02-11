@@ -62,7 +62,7 @@
                     console.log(error);
                 });
                 axios.get('http://photoclo.ru:8000/api/photos/', { headers: {Authorization: "Token " + localStorage.token}, params: {offset: 0, limit: 2000, size: "o"}}).then(function (response) {
-                    this_.images = [];
+                    this_.imagesBig = [];
                     for (var i = 0; i < response.data.photos.length; ++i) {
                         this_.imagesBig.push(response.data.photos[i]);
                     }
