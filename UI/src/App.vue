@@ -144,9 +144,13 @@
                 this.resetUploader()
             },
             goToYandexDisk() {
-                console.log("In yandex!");
-                axios.get('http://photoclo.ru:8000/api/tokens/code/',{ headers: {Authorization: "Token " + String(this.token)}}).then(function (response) {
-                    window.location.href = response.data.url;
+                axios.get('http://photoclo.ru:8000/api/tokens/code/',{ headers: {Authorization: "Token " +
+                    String(this.token)}}).then(function (response) {
+                    if (!response.data.sync) {
+                        window.location.href = response.data.url;
+                    } else {
+                        console.log("Disk is already synchronized");
+                    }
                 });
             }
         },
