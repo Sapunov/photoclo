@@ -64,14 +64,12 @@
         height: auto;
     }
 
-    /* Make the image responsive */
     .myContainer img {
         width: 100%;
         max-width: 100%;
         max-height: 100%;
     }
 
-    /* Style the button and place it in the middle of the container/image */
     .myContainer .btn {
         position: absolute;
         transform: translate(-50%, -50%);

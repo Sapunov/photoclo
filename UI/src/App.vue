@@ -278,18 +278,12 @@
     #dropUser {
         margin-left: 20px;
         margin-top: 14px;
-        /*border: 1px solid black;*/
         padding-top: 10px;
         margin-right: 20px !important;
-        /*background-image:url('http://www.w3.org/html/logo/downloads/HTML5_Logo_32.png');*/
         background-repeat:no-repeat;
         opacity: 1;
         width: 35px;
         height: 35px;
         background-image: url("https://i.ibb.co/sRkCGT4/Webp-net-resizeimage-7.png");
     }
-    /*#userDiv {*/
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*}*/
 </style>
