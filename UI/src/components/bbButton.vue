@@ -12,7 +12,7 @@
     function resizable (el, factor) {
         var int = Number(factor) || 7.7;
         function resize() {
-            el.style.width = String(Math.max(100, pixelWidth(el.value, {size: 20}) + 10)) + 'px';
+            el.style.width = String(Math.max(100, pixelWidth(el.value, {size: 20, family: 'Calibri'}) + 20)) + 'px';
         }
         var e = 'keyup,keypress,focus,blur,change'.split(',');
         for (var i in e) el.addEventListener(e[i],resize,false);
@@ -24,7 +24,7 @@
 		props: ['srcWidth', 'srcHeight', 'face', 'avatar'],
         data() {
             return {
-                name: ''
+                name: '' 
             };
         },
         watch: {},
@@ -84,15 +84,21 @@
         align-items: center;
     }
 
+    .mybbButton {
+        z-index: 3 !important;
+    }
+
     .mybbButton:hover {
         border: 3px solid rgba(255, 255, 0, 1) !important;
         margin-bottom: 3px !important;
     }
 
     .nameInput {
+        z-index: 5 !important;
         position: absolute;
         align-self: center;
         display: none;
+        font: 'Calibri';
         font-size: 20px;
         height: auto;
         top: 100%;

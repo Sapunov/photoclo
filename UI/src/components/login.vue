@@ -15,7 +15,7 @@
                         v.model="input.username"
                         v-on:change="updateUsername"
                         autofocus
-                        required/>
+                        required>
                 <span class="floating-label">Логин</span>
             </div>
             <div class="user-input-wrp">
@@ -31,7 +31,7 @@
                         required/>
                 <span class="floating-label">Пароль</span>
             </div>
-            <button class="loginPageButton" id="loginButton" form="login" type="submit""><span>Вход</span></button>
+            <button class="loginPageButton" id="loginButton" form="login" type="submit"><span>Вход</span></button>
         </div>
         <button class="loginPageButton" id="registerButton" form="login" type="button" v-on:click="toRegisterPage()">Еще нет аккаунта? Зарегистрируйтесь!</button>
     </form>
@@ -118,6 +118,7 @@
         min-height: 350px;
         padding: 20px;
         font: 20px Calibri;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     .input {
