@@ -1,10 +1,10 @@
 <template>
     <div class="myUploadBox">
         <div  class="vue_component__upload--image" v-bind:class="{ 'dragover': onDragover  }">
-            <span class="error" v-if="total>max_files"> Вы не можете загрузить больше {{max_files}} фотографий</span>
+            <span style="font-family: 'Lucida Console', serif;" class="error" v-if="total>max_files"> Вы не можете загрузить больше {{max_files}} фотографий</span>
             <form style="height: auto; min-height: 70vh; cursor: pointer" v-bind:id="'upload_image_form--' + input_id" enctype="multipart/form-data">
                 <div style="margin-top: 30%" v-if="total==0" class="image"></div>
-                <span style="font-size: 20px !important; color: black !important; height: 50px;" v-if="total == 0" id="id">
+                <span style="font-family: 'Lucida Console', serif;font-size: 20px !important; color: black !important; height: 50px;" v-if="total == 0" id="id">
                                                                     Переместите сюда ваши фото или просто нажмите</span>
 
                 <div class="upload_image_form__thumbnails">
@@ -19,7 +19,7 @@
                 <input type="file" v-bind:id="'upload_image_form__input--' + input_id" hidden multiple />
             </form>
             <div id="buttons">
-                <button style="width: 110px; height: 40px; margin-right: 25px; background-color: green; color: white" type="submit"
+                <button style="width: 110px; height: 40px; margin-right: 25px; background-color: #4b82d7; color: white" type="submit"
                         v-bind:class="button_class"
                         v-on:click="submit"
                         v-bind:disabled="onUploading"
@@ -154,21 +154,17 @@
                 return true;
             },
             _xhr: function(formData, keys, callback){
-                console.log("_xhr try to send")
                 const this_ = this;
                 this.onUploading = true;
                 this.$emit('upload-image-attempt', formData);
                 keys.forEach((key) => {
                     this.$set(this.files[key], 'attempted', true);
                 });
-                console.log("Try to post")
-                console.log(this.url)
-                console.log(this.my_header)
                 axios({method: 'post', url:this.url, data:formData, headers:this.my_header}).then((response) => {
                     keys.forEach((key) => {
                         this.$set(this.files[key], 'uploaded', true);
-                        // this_.total++;
                     });
+                    console.log(response);
                     this.$emit('upload-image-success', [formData, response]);
                 }, (response) => {
                     this.$emit('upload-image-failure', [formData, response]);
@@ -179,7 +175,6 @@
             },
             upload: function(){
                 if(!this._can_xhr()) return false;
-                console.log("In upload func")
                 for (let key in this.files) {
                     if(!this._can_upload_file(key)) continue;
                     let formData = new FormData();
@@ -213,16 +208,14 @@
                 }
             },
             submit: function(e){
-                console.log("Try to submit")
                 e.preventDefault(); e.stopPropagation();
                 if(!this.onUploading){
                     if(this.max_batch > 1){
-                        console.log("Batch")
                         this.create_batch();
                         return this.upload_batch();
                     }
-                    console.log("No batch")
                     this.upload();
+                    this.$emit('closeModal');
                 }
             },
             dragEnter: function(e){
@@ -307,12 +300,19 @@
                 e.preventDefault(); e.stopPropagation();
             },
             close: function(e) {
-                console.log("Try to hide")
+                console.log("Try to close")
                 e.preventDefault(); e.stopPropagation();
                 this.$emit('closeModal')
             },
             resetUploader() {
-                this.$emit('closeModal')
+                this.index = 0;
+                this.total = 0;
+                this.files = {};
+                this.image = {};
+                this.batch = {};
+                this.onDragover = false;
+                this.onUploading = false;
+                //this.$emit('closeModal');
             }
 
         }
@@ -394,7 +394,7 @@
         margin-left: 30px;
         margin-right: 30px;
         margin-bottom: 5px;
-        border: 4px dashed forestgreen !important;
+        border: 4px dashed #4b82d7 !important;
     }
     div.image:before {
         content:url(https://i.ibb.co/Z81HczQ/Webp-net-resizeimage-3.png);

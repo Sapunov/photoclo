@@ -1,13 +1,14 @@
+
 <template>
 
     <div id="app">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
 
-        <b-navbar v-if="authenticated" toggleable="md" type="dark" variant="info">
+        <b-navbar class="navBar" style="height: 50px" v-if="authenticated" toggleable="md" type="light" variant="light">
 
             <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-            <b-navbar-brand href="photoclo.ru:8000">PHOTOCLO</b-navbar-brand>
+            <b-navbar-brand style="color: black; font-family: 'Lucida Console', serif; font-size: 30px !important;" href="photoclo.ru:8000">PHOTOCLO</b-navbar-brand>
 
             <b-collapse is-nav id="nav_collapse">
 
@@ -16,24 +17,41 @@
                 <!-- Right aligned nav items -->
                 <b-navbar-nav class="ml-auto">
 
-                    <form class="form-inline md-form form-sm mt-0">
-                        <i class="fas fa-search" aria-hidden="true"></i>
-                        <input class="form-control form-control ml-3 w-75" type="text" placeholder="Поиск" aria-label="Search">
-                    </form>
 
+                    <!--     Search     -->
+                    <!--<form class="form-inline md-form form-sm mt-0">-->
+                    <!--<i class="fas fa-search" aria-hidden="true"></i>-->
+                    <!--<input class="form-control form-control ml-3 w-75" type="text" placeholder="Поиск" aria-label="Search">-->
+                    <!--</form>-->
 
-                    <b-button v-b-modal.uploadModal class="mr-sm-2" v-on:click="updateToken(); updateModalShown" right>Загрузить</b-button>
+                    <div v-on:click="startUpload" class="iconDiv">
+                        <div><img src="https://i.ibb.co/vJs3zrs/icon.png"  class="iconImg"/></div>
+                        <span class="iconText">Загрузка</span>
+                    </div>
+
                     <!--<span> myUploader.data().toClose </span>-->
-                    <b-modal v-if="isModalShown" id="uploadModal" ref="uploadModal" hide-footer=true @hide="canselUploader" title="Загрузка фотографий">
-                        <myUploader ref="myUploader" v-on:closeModal="updateModalShown" url="http://photoclo.ru:8000/api/photos/" @upload-image-success='updateImages' @upload-image-failure='updateImages'> </myUploader>
-                        <!--
-                        <multiple-file-uploader id="fileUploader" postURL="/api/photos/" successMessagePath="" errorMessagePath="" @upload-success='updateImages' @upload-error='updateImages'></multiple-file-uploader>
-                        --->
+                    <b-modal id="uploadModal" ref="uploadModal" hide-footer=true @hide="isModalShown=false" title="Загрузка фотографий">
+                        <myUploader ref="myUploader" v-on:closeModal="isModalShown = false;" url="http://photoclo.ru:8000/api/photos/" @upload-image-success='updateImages();' @upload-image-failure='updateImages();'> </myUploader>
                     </b-modal>
-                    <b-dropdown right text="Пользователь"  class="mr-sm-2">
+
+
+                    <div class="iconDiv">
+                        <div><img src="https://i.ibb.co/0cmbT5w/ya-disk.png" class="iconImg"></div>
+                        <span class="iconText"> Яндекс.Диск </span>
+                    </div>
+
+                    <b-dropdown right text=""  class="mr-sm-2" id="dropUser" variant="link" no-caret>
                         <b-dropdown-item href="#">Профиль</b-dropdown-item>
                         <b-dropdown-item v-on:click="logout()">Выйти</b-dropdown-item>
                     </b-dropdown>
+
+                    <!--<div class="iconDiv" id="userDiv">-->
+                    <!--<img src="https://i.ibb.co/SDTzj5R/user-icon.png" class="iconImg" id="userImg"/>-->
+                    <!--<b-dropdown id="userButton" right text=""  class="mr-sm-2" no-caret variant="link">-->
+                    <!--<b-dropdown-item href="#">Профиль</b-dropdown-item>-->
+                    <!--<b-dropdown-item v-on:click="logout()">Выйти</b-dropdown-item>-->
+                    <!--</b-dropdown>-->
+                    <!--</div>-->
                 </b-navbar-nav>
 
             </b-collapse>
@@ -44,7 +62,6 @@
 
 <script>
     import axios from 'axios';
-    import MultipleFileUploader from './components/MultipleFileUploader.vue';
     import myUploader from './components/myUploader.vue'
     var modal = document.getElementById('id01');
 
@@ -65,12 +82,22 @@
             return {
                 authenticated: false,
                 token: undefined,
-                isModalShown: false
+                isModalShown: false,
             }
         },
         components: {
-            MultipleFileUploader,
             myUploader
+        },
+        watch: {
+            isModalShown(value) {
+                console.log("I am in watcher")
+                if (value) {
+                    this.$refs.uploadModal.show();
+                }
+                else {
+                    this.$refs.uploadModal.hide();
+                }
+            }
         },
         mounted() {
 
@@ -78,19 +105,19 @@
                 this.token = localStorage.token;
                 this.authenticated = true;
             }
+            console.log(this.authenticated);
             if(!this.authenticated) {
+                console.log("lol");
                 this.$router.replace({ name: "login" });
             }
             else {
-                var this_ = this;
+                console.log("kek");
                 this.$router.replace({name: "secure"});
             }
         },
 
         methods: {
             updateToken () {
-                this.isModalShown = true;
-                console.log(localStorage.token);
                 document.getElementsByClassName('myUploadBox')[0].__vue__.$props.my_header = {Authorization: "Token " + localStorage.token};
             },
             setAuthenticated(status) {
@@ -98,7 +125,7 @@
             },
             logout() {
                 var this_ = this;
-                axios.post('/api/sign_out/', {Authorization: "Token " + String(this.token)}).then(function () {
+                axios.post('http://photoclo.ru:8000/api/sign_out/', {Authorization: "Token " + String(this.token)}).then(function () {
                     this_.authenticated = false;
                     this_.$router.replace({ name: "login" });
                     delete localStorage.token;
@@ -107,14 +134,14 @@
             updateImages() {
                 this.$refs.child.updateImages();
             },
-            updateModalShown: function () {
-                console.log("inside updateModalShown")
-                this.isModalShown = !this.isModalShown;
-            },
-            canselUploader() {
-                console.log("inside canselUploader")
-                this.$refs.uploadModal.html = "";
+            resetUploader() {
                 this.$refs.myUploader.resetUploader();
+            },
+            startUpload() {
+                console.log("Start upload")
+                this.isModalShown=true;
+                this.updateToken();
+                this.resetUploader()
             }
         },
     }
@@ -122,8 +149,7 @@
 
 <style>
     body {
-        background-color: #E0E0E0;
-        background-image: url("background.jpg");
+        background-color: #CCC !important;
     }
     h1 {
         padding: 0;
@@ -138,7 +164,7 @@
     }
 
     button:hover {
-      opacity: 0.8;
+        opacity: 0.8;
     }
 
     .dropAreaDragging{
@@ -147,7 +173,7 @@
 
     .searchbar{
         margin: auto;
-        height: 60px;
+        height: 100px;
         background-color: #353b48;
         border-radius: 30px;
         padding: 10px;
@@ -173,7 +199,13 @@
         background: white;
         color: #e74c3c;
     }
+    .navBar {
+        height: 55px;
+        background-color: #F8F8F8;
+        border-color: #E7E7E7;
+        border-bottom: 2px solid lightskyblue;
 
+    }
     .search_icon{
         height: 40px;
         width: 40px;
@@ -184,4 +216,70 @@
         border-radius: 50%;
         color:white;
     }
+    #userImg {
+        padding-bottom: 8px;
+        height: 45px;
+        width: auto;
+    }
+    .iconDiv {
+        /*border: 1px solid grey;*/
+        padding-top: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 2px;
+        cursor: pointer;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 20px;
+        margin-right: 25px;
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+    }
+    .iconDiv:hover {
+        background-color: rgba(58, 120, 222, 0.05) !important;
+    }
+    .iconText {
+        font-weight: 100;
+        font-family: 'Lucida Console', serif;
+        font-size: 17px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .iconImg {
+        width: 20px;
+        height: 15px;
+        margin-left: 10px;
+    }
+    #userButton {
+        height: auto;
+        background-color: red;
+        color: red;
+        margin-top: 0px;
+    }
+    #userImg {
+        width: 30px;
+        height: 35px;
+        margin-bottom: 0px;
+    }
+    #uploadModal {
+        font-family: 'Lucida Console', serif;
+    }
+    #dropUser {
+        margin-left: 20px;
+        margin-top: 14px;
+        /*border: 1px solid black;*/
+        padding-top: 10px;
+        margin-right: 20px !important;
+        /*background-image:url('http://www.w3.org/html/logo/downloads/HTML5_Logo_32.png');*/
+        background-repeat:no-repeat;
+        opacity: 1;
+        width: 35px;
+        height: 35px;
+        background-image: url("https://i.ibb.co/sRkCGT4/Webp-net-resizeimage-7.png");
+    }
+    /*#userDiv {*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*}*/
 </style>

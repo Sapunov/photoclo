@@ -12,8 +12,19 @@
     <list default="true" id="69b89204-7647-4f00-a325-09417a62f491" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MultipleFileUploader.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/bbButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/bbButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/gallery.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/gallery.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/imageItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/imageItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/imageWBBItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/imageWBBItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/myUploader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/myUploader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/register.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/secure.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/secure.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/test.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,47 +51,86 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/login.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2146">
-              <caret line="74" selection-start-line="74" selection-end-line="74" />
+            <state relative-caret-position="870">
+              <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/myUploader.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="203">
+              <caret line="7" column="36" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+              <folding>
+                <element signature="e#154#199#0" expanded="true" />
+                <element signature="e#272#327#0" expanded="true" />
+                <element signature="e#425#448#0" expanded="true" />
+                <element signature="e#508#587#0" expanded="true" />
+                <element signature="e#1506#1599#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/App.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="232">
+              <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+              <folding>
+                <element signature="e#195#215#0" expanded="true" />
+                <element signature="e#382#469#0" expanded="true" />
+                <element signature="e#3008#3034#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/imageWBBItem.vue">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="87">
+              <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/imageItem.vue">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/bbButton.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2465">
+              <caret line="85" selection-start-line="85" selection-end-line="85" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/gallery.vue">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/secure.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-29">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="8729">
+              <caret line="303" column="8" selection-start-line="303" selection-start-column="8" selection-end-line="303" selection-end-column="8" />
               <folding>
-                <element signature="e#77#113#0" expanded="true" />
+                <element signature="e#292#299#1" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App.vue">
+        <entry file="file://$PROJECT_DIR$/src/components/secure.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
-              <folding>
-                <element signature="e#1312#1379#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="580">
+              <caret line="24" column="10" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -88,21 +138,53 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/register.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4553">
-              <caret line="157" column="39" selection-start-line="157" selection-start-column="39" selection-end-line="157" selection-end-column="39" />
+            <state relative-caret-position="1740">
+              <caret line="60" column="32" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>br</find>
-      <find>empty</find>
-      <find>passwordField</find>
-      <find>incorrect</find>
-      <find>up</find>
+      <find>submit</find>
+      <find>rou</find>
+      <find>root</find>
+      <find>updateToke</find>
+      <find>postHeade</find>
+      <find>er</find>
+      <find>error</find>
+      <find>fl</find>
+      <find>ref</find>
+      <find>Try to hid</find>
+      <find>fileDelet</find>
+      <find>closeMod</find>
+      <find>closeM</find>
+      <find>tabind</find>
+      <find>tabin</find>
+      <find>upload-image-su</find>
+      <find>upload</find>
+      <find>tryTO</find>
+      <find>uploadBut</find>
+      <find>isModal</find>
+      <find>uploadImg</find>
+      <find>isModalShow</find>
+      <find>back</find>
+      <find>gree</find>
+      <find>button</find>
+      <find>hover</find>
+      <find>border</find>
+      <find>blue</find>
+      <find>uplo</find>
+      <find>opacity</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -111,16 +193,26 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/register.vue" />
+        <option value="$PROJECT_DIR$/src/components/uploader" />
+        <option value="$PROJECT_DIR$/src/components/test.vue" />
+        <option value="$PROJECT_DIR$/src/components/MultipleFileUploader.vue" />
+        <option value="$PROJECT_DIR$/src/components/secure.vue" />
+        <option value="$PROJECT_DIR$/src/components/gallery.vue" />
+        <option value="$PROJECT_DIR$/src/components/imageWBBItem.vue" />
+        <option value="$PROJECT_DIR$/src/components/bbButton.vue" />
         <option value="$PROJECT_DIR$/src/components/login.vue" />
+        <option value="$PROJECT_DIR$/src/components/register.vue" />
+        <option value="$PROJECT_DIR$/src/components/imageItem.vue" />
+        <option value="$PROJECT_DIR$/src/components/myUploader.vue" />
+        <option value="$PROJECT_DIR$/src/App.vue" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1720" />
+    <option name="x" value="1704" />
     <option name="y" value="48" />
-    <option name="width" value="1500" />
-    <option name="height" value="1752" />
+    <option name="width" value="1498" />
+    <option name="height" value="1696" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -128,7 +220,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -151,6 +242,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -187,22 +279,25 @@
       <updated>1549551350230</updated>
       <workItem from="1549551352777" duration="1012000" />
       <workItem from="1549552391341" duration="12954000" />
-      <workItem from="1549617058940" duration="8000" />
+      <workItem from="1549715405820" duration="19183000" />
+      <workItem from="1549741233430" duration="28203000" />
+      <workItem from="1549800117045" duration="11790000" />
+      <workItem from="1549812004366" duration="19468000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14063000" />
+    <option name="totallyTimeSpent" value="92610000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="130" y="-8" width="3070" height="1808" extended-state="6" />
+    <frame x="129" y="13" width="3072" height="1788" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16934943" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20120725" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3297055" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -210,7 +305,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3297055" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -232,45 +327,92 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/components/uploader" />
+    <entry file="file://$PROJECT_DIR$/src/components/test.vue" />
+    <entry file="file://$PROJECT_DIR$/src/components/MultipleFileUploader.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6148">
+          <caret line="232" column="39" lean-forward="true" selection-start-line="232" selection-start-column="39" selection-end-line="232" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/background.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/login.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2146">
-          <caret line="74" selection-start-line="74" selection-end-line="74" />
+        <state relative-caret-position="870">
+          <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/imageWBBItem.vue">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/imageItem.vue">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/gallery.vue">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/register.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4553">
-          <caret line="157" column="39" selection-start-line="157" selection-start-column="39" selection-end-line="157" selection-end-column="39" />
+        <state relative-caret-position="435">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
+    <entry file="file://$PROJECT_DIR$/src/components/bbButton.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+        <state relative-caret-position="2465">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/gallery.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8729">
+          <caret line="303" column="8" selection-start-line="303" selection-start-column="8" selection-end-line="303" selection-end-column="8" />
           <folding>
-            <element signature="e#1312#1379#0" expanded="true" />
+            <element signature="e#292#299#1" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/secure.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-29">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="580">
+          <caret line="24" column="10" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/register.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1740">
+          <caret line="60" column="32" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/imageWBBItem.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/myUploader.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="7" column="36" lean-forward="true" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
           <folding>
-            <element signature="e#77#113#0" expanded="true" />
+            <element signature="e#154#199#0" expanded="true" />
+            <element signature="e#272#327#0" expanded="true" />
+            <element signature="e#425#448#0" expanded="true" />
+            <element signature="e#508#587#0" expanded="true" />
+            <element signature="e#1506#1599#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+          <folding>
+            <element signature="e#195#215#0" expanded="true" />
+            <element signature="e#382#469#0" expanded="true" />
+            <element signature="e#3008#3034#0" expanded="true" />
           </folding>
         </state>
       </provider>
