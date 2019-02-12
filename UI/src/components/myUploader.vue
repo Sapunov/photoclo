@@ -2,7 +2,7 @@
     <div class="myUploadBox">
         <div  class="vue_component__upload--image" v-bind:class="{ 'dragover': onDragover  }">
             <span style="font-family: 'Lucida Console', serif;" class="error" v-if="total>max_files"> Вы не можете загрузить больше {{max_files}} фотографий</span>
-            <form style="height: auto; min-height: 70vh; cursor: pointer" v-bind:id="'upload_image_form--' + input_id" enctype="multipart/form-data">
+            <form style="min-height: 60vh; height: auto; cursor: pointer" v-bind:id="'upload_image_form--' + input_id" enctype="multipart/form-data">
                 <div style="margin-top: 30%" v-if="total==0" class="image"></div>
                 <span style="font-family: 'Lucida Console', serif;font-size: 20px !important; color: black !important; height: 50px;" v-if="total == 0" id="id">
                                                                     Переместите сюда ваши фото или просто нажмите</span>
@@ -67,7 +67,7 @@
             max_files: {
                 type: Number,
                 required: false,
-                default: 10
+                default: 1000
             },
             max_filesize: {
                 type: Number,

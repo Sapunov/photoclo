@@ -9,7 +9,7 @@
 
 <script> 
     import bbButton from './bbButton.vue';
-    
+    import axios from 'axios';
 
 	export default {
 		name: 'imageWBBItem',
@@ -64,14 +64,12 @@
         height: auto;
     }
 
-    /* Make the image responsive */
     .myContainer img {
         width: 100%;
         max-width: 100%;
         max-height: 100%;
     }
 
-    /* Style the button and place it in the middle of the container/image */
     .myContainer .btn {
         position: absolute;
         transform: translate(-50%, -50%);
@@ -79,5 +77,9 @@
         border: none;
         cursor: pointer;
         border-radius: 5px;
+    }
+
+    .btn {
+        z-index: 5 !important;
     }
 </style>

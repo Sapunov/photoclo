@@ -16,8 +16,9 @@
                         v.model="input.username"
                         v-on:change="updateUsername"
                         v-on:keyup.enter="register"
-                        autofocus required
-                        align="center"/>
+                        autofocus
+                        align="center"
+                        required/>
                 <span class="floating-label">Логин</span>
             </div>
             <div class="user-input-wrp">
@@ -198,6 +199,7 @@
         height: 80vh;
         padding: 20px;
         font: 20px Calibri;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
     .input {
